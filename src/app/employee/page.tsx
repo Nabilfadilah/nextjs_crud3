@@ -1,12 +1,20 @@
+import React, {Suspense} from "react";
+import {Spinner} from "@/components/Spinner";
+import TableData from "@/components/TableData";
 import Link from "next/link";
-import React from "react";
+import Search from "@/components/search";
 
-const page = () => {
+const Home = async ({searchParams}: {searchParams?: {query?: string}}) => {
+  // Await for searchParams to resolve
+  const query = searchParams?.query || "";
+
+  console.log("SearchParams:", searchParams);
+
   return (
     <div className="w-screen py-20 flex justify-center flex-col items-center">
       <div className="flex items-center justify-between gap-1 mb-5">
         <h1 className="text-4xl font-bold">
-          Next.js 14 CRUD and Search with Prisma Mysql | TailwindCSS DaisyUI
+          Next.js 15 CRUD and Search with Prisma Mysql | TailwindCSS DaisyUI
         </h1>
       </div>
       <div className="overflow-x-auto">
@@ -15,13 +23,14 @@ const page = () => {
             Create
           </Link>
         </div>
-        {/* <Search />
+
+        <Search />
         <Suspense key={query} fallback={<Spinner />}>
           <TableData query={query} />
-        </Suspense> */}
+        </Suspense>
       </div>
     </div>
   );
 };
 
-export default page;
+export default Home;
